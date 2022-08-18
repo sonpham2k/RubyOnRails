@@ -17,10 +17,10 @@
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <%= link_to "sample app", root_path, id: "logo" %>
+        <%= link_to "sample app", helf_path, id: "logo" %>
           <nav>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Home",root_path %></li>
+              <li><%= link_to "Home", helf_path %></li>
               <li><%= link_to "Help", help_path %></li>
               <% if logged_in? %>
                 <li><%= link_to "Users", users_path %></li>
