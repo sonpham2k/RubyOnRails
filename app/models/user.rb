@@ -7,12 +7,10 @@ class User < ApplicationRecord
                         format: { with: VALID_EMAIL_REGEX },
                         uniqueness: true
     has_secure_password
-    # validates :password, presence: true, length: { minimum: 6 }
-    # validates :password_confirmation, presence: true, length: { minimum: 6 }
-
-    # validate :check_email_and_password
-
-    # def check_email_and_password
-    #     errors.add(:password, "Password != password_confirm") if password == password_confirm
-    # end
+    # Returns the hash digest of the given string.
+    def User.digest(string)
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+        BCrypt::Engine.cost
+        BCrypt::Password.create(string, cost: cost)
+    end
 end
