@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     attr_accessor :remember_token, :activation_token, :reset_token
-    has_many :microposts
+    has_many :microposts, dependent: :destroy
     before_save :downcase_email
     before_save { self.email = email.downcase }
     before_create :create_activation_digest
@@ -60,6 +60,19 @@ class User < ApplicationRecord
     # Sends activation email.
     def send_activation_email
         UserMailer.account_activation(self).deliver_now
+    end
+
+    # Defines a proto-feed.
+    # See "Following users" for the full implementation
+    def feed
+        Micropost.where("user_id = ?", id)
+    end
+
+    def home
+        if logged_in?
+        @micropost = current_user.microposts.build
+        @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
+        end
     end
 
     private

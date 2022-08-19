@@ -9,6 +9,8 @@ gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
 gem 'rails-ujs', '~> 0.1.0'
 gem 'popper'
+#mysql
+gem 'mysql2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8', '>= 5.2.8.1'
 # Use sqlite3 as the database for Active Record
